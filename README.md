@@ -18,7 +18,7 @@ So why not create dynamic wallpaper where photos come from the [ISS HDEV experim
 ## Content
 
 Script is not really long.
-I wanted to be able to recognize if the stream was down (meaning loss of signal between earth and ISS) to avoid to change my wallpaper.
+I wanted to be able to recognize if the stream was down (meaning loss of signal between earth and ISS) to avoid updating my wallpaper.
 Same logic if the stream is too dark.
 I tried to find a method to resize in a clever way, but hard work for me. :sweat:
 
