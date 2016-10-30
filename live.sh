@@ -2,10 +2,11 @@
 
 # variables
 
-threshold="0.1"
+threshold="0.2"
 collections="Collections"
 default="default-wallpaper.jpg"
 issfile=$collections/`date +%Y%m%d-%H%M%S`.jpg
+issLiveIsDown="issLiveIsDown.jpg"
 
 # get one frame of live stream
 
@@ -24,7 +25,7 @@ then
 		file $issfile
 	fi
 
-	rmsedown=`compare -metric RMSE down.jpg $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
+	rmsedown=`compare -metric RMSE $issLiveIsDown $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
 	rmseblack=`compare -metric RMSE -size 1280x720 xc:#000 $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
 
 
