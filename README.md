@@ -26,10 +26,12 @@ i used:
 
 * imagemagick CLI
 * feh
-* mpv
+* ffmpeg
+
 
 ## To Do
 
+* Add location text (dev branch)
 * resize quality
 * colors/filters?
 
