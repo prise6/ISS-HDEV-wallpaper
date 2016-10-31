@@ -10,7 +10,7 @@ issLiveIsDown="issLiveIsDown.jpg"
 
 # get one frame of live stream
 
-ffmpeg -loglevel panic -y -i http://iphone-streaming.ustream.tv/uhls/17074538/streams/live/iphone/playlist.m3u8  -an -q:v 2 -frames:v 1 $issfile
+ffmpeg  -y -i http://iphone-streaming.ustream.tv/uhls/17074538/streams/live/iphone/playlist.m3u8  -an -q:v 2 -frames:v 1 $issfile
 # ffmpeg -y -i http://iphone-streaming.ustream.tv/uhls/17074538/streams/live/iphone/playlist.m3u8 -map 0:p:1 -an -q:v 2 -frames:v 1 $issfile
 
 failed=$?
