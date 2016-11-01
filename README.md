@@ -42,7 +42,7 @@ i used:
 
 ## To Do
 
-* Add location text (dev branch)
+* ~~Add location text (dev branch)~~
 * resize quality
 * colors/filters?
 
