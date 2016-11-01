@@ -22,14 +22,14 @@ longitude=`echo $issinfos | grep -Po 'longitude.*?,' | grep -Po '\-?[0-9]+\.[0-9
 
 # find ocean name
 ocean=$(curl -s "http://api.geonames.org/oceanJSON?lat=$latitude&lng=$longitude&username=$username")
-# echo $ocean
+# echo ocean
 position=$(echo $ocean | grep -Po '(?<=name":").*?(?=")')
 
 if [[ -z $position ]]  
 then
 	# find country with location
 	country=$(curl -s "http://api.geonames.org/findNearbyJSON?lat=$latitude&lng=$longitude&username=$username&style=MEDIUM&maxRows=1")
-	# echo $country
+	echo $country
 	position=$(echo $country | grep -Po '(?<=countryName":").*?(?=")')
 fi
 
