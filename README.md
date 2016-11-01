@@ -1,11 +1,22 @@
 # ISS HD Earth Viewing Wallpaper \o/
 
-## Goals 
+## Sumup
 
 I really do like views from space and i was tired of my old wallpaper.
 So why not create dynamic wallpaper where photos come from the [ISS HDEV experiment](http://www.ustream.tv/channel/iss-hdev-payload).
 
+```
+~$ ./live.sh
+```
 ![view from ISS](http://upload.timfaitsoncinema.fr/p/2016-10/58157bdf.jpg)
+
+```
+~$ ./live.sh --with-location
+```
+
+![view from ISS with location](http://upload.timfaitsoncinema.fr/p/2016-11/5818e79a.jpg)
+
+(location and time on top left)
 
 :camera: :dizzy_face:
 
