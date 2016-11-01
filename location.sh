@@ -29,7 +29,7 @@ if [[ -z $position ]]
 then
 	# find country with location
 	country=$(curl -s "http://api.geonames.org/findNearbyJSON?lat=$latitude&lng=$longitude&username=$username&style=MEDIUM&maxRows=1")
-	echo $country
+	# echo $country
 	position=$(echo $country | grep -Po '(?<=countryName":").*?(?=")')
 fi
 
