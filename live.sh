@@ -2,10 +2,11 @@
 
 # variables
 
-threshold="0.2"
+threshold="0.15"
 collections="Collections"
 default="default-wallpaper.jpg"
-issfile=$collections/`date +%Y%m%d-%H%M%S`.jpg
+currentdate=`date +%Y%m%d-%H%M%S`
+issfile=$collections/$currentdate.jpg
 issLiveIsDown="issLiveIsDown.jpg"
 
 # get one frame of live stream
@@ -36,10 +37,20 @@ then
 	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
 	then
 		echo "It's too dark"
-		exit 1;
+		# exit 1;
 	fi
 
 	convert $issfile -filter spline -resize 1920x -unsharp 0x4+0.4+0 $default
+
+	if [[ $1 = "--with-location" ]]
+	then
+		location="`date +%d/%m/%Y\ -\ %H:%M` - `./location.sh`"
+		convert $default -gravity northWest \
+    	      -stroke '#000C' -strokewidth 2 -pointsize 15 -annotate 0 "$location" \
+        	  -stroke  none   -fill white    -pointsize 15 -annotate 0 "$location" \
+  				$default
+  	fi
+
 
 	feh --bg-center $default
 fi
