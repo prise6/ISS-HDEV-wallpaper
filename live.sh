@@ -52,5 +52,5 @@ then
   	fi
 
 
-	feh --bg-center $default
+	DISPLAY=:0.0 feh --bg-center $default
 fi
