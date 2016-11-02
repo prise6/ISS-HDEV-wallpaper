@@ -37,7 +37,7 @@ then
 	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
 	then
 		echo "It's too dark"
-		# exit 1;
+		exit 1;
 	fi
 
 	convert $issfile -filter spline -resize 1920x -unsharp 0x4+0.4+0 $default
