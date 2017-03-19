@@ -36,7 +36,7 @@ then
 		exit 1;
 	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
 	then
-		echo "It's too dark"
+		echo "It's too dark";
 		exit 1;
 	fi
 
@@ -44,11 +44,19 @@ then
 
 	if [[ $1 = "--with-location" ]]
 	then
-		location="`date +%d/%m/%Y\ -\ %H:%M` - `./location.sh`"
+		location=`./location.sh`
+		caption="`date +%d/%m/%Y\ -\ %H:%M` - $location"
 		convert $default -gravity northWest \
-    	      -stroke '#000C' -strokewidth 2 -pointsize 15 -annotate 0 "$location" \
-        	  -stroke  none   -fill white    -pointsize 15 -annotate 0 "$location" \
+    	      -stroke '#000C' -strokewidth 2 -pointsize 15 -annotate 0 "$caption" \
+        	  -stroke  none   -fill white    -pointsize 15 -annotate 0 "$caption" \
   				$default
+
+  		if [[ $2 = "--post-fb" ]]
+  		then
+  			access_token_fb=`cat ACCESS_TOKEN`
+  			id_page_fb=`cat ID_PAGE`
+  			python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location" >> /dev/null
+  		fi
   	fi
 
 
