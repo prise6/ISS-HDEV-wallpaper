@@ -6,12 +6,12 @@ I really do like views from space and i was tired of my old wallpaper.
 So why not create dynamic wallpaper where photos come from the [ISS HDEV experiment](http://www.ustream.tv/channel/iss-hdev-payload).
 
 ```
-~$ ./live.sh
+~$ ./live.sh --wallpaper
 ```
 ![view from ISS](http://upload.timfaitsoncinema.fr/p/2016-10/58157bdf.jpg)
 
 ```
-~$ ./live.sh --with-location
+~$ ./live.sh --wallpaper --with-location
 ```
 
 ![view from ISS with location](http://upload.timfaitsoncinema.fr/p/2016-11/5818e79a.jpg)

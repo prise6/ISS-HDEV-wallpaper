@@ -62,8 +62,9 @@ then
 		location=`./location.sh`
 		access_token_fb=`cat ACCESS_TOKEN`
 	  	id_page_fb=`cat ID_PAGE`
-	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location" >> /dev/null
-
+	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location"
+	  	rm $issfile
 	fi
-
 fi
+
+exit 1;
