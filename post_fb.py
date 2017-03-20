@@ -2,9 +2,6 @@ import facebook
 import time
 import sys
 
-
-print str(sys.argv)
-
 access_token = sys.argv[1]
 id_page      = sys.argv[2]
 photo        = sys.argv[3]
@@ -35,9 +32,6 @@ if __name__ == '__main__':
 			location = location
 		)
 		id_album = new_album['id']
-
-	print(id_album)
-	
 
 	# add photo
 	graph.put_photo(
