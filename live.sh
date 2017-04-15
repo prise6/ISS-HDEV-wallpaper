@@ -28,21 +28,21 @@ then
 		file $issfile
 	fi
 
-	rmsedown=`compare -metric RMSE $issLiveIsDown $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
-	rmsegray=`compare -metric RMSE $issGrayWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
-	rmseblack=`compare -metric RMSE $issBlackWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
+	rmsedown=`compare -metric RMSE $issLiveIsDown $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
+	rmsegray=`compare -metric RMSE $issGrayWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
+	rmseblack=`compare -metric RMSE $issBlackWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
 	# rmseblack=`compare -metric RMSE -size 1280x720 xc:#000 $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
 
 
-	if [ $(echo " $rmsedown < $threshold " | bc) -eq 1 ] 
+	if [[ ( -z $rmsedown ) || ( $(echo " $rmsedown < $threshold " | bc) -eq 1 ) ]]
 	then
 		echo "Live is down";
 		liveIsDown=1
-	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
+	elif [[ ( -z $rmsedown ) || ( $(echo " $rmseblack < $threshold " | bc) -eq 1 ) ]] 
 	then
 		echo "It's too dark";
 		liveIsDown=1
-	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
+	elif [[ ( -z $rmsedown ) || ( $(echo " $rmsegray < $threshold " | bc) -eq 1 ) ]]
 	then
 		echo "Live is down (gray)";
 		liveIsDown=1
