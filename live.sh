@@ -8,6 +8,9 @@ default="default-wallpaper.jpg"
 currentdate=`date +%Y%m%d-%H%M%S`
 issfile=$collections/$currentdate.jpg
 issLiveIsDown="issLiveIsDown.jpg"
+issGrayWallpaper="gray-wallpaper.jpg"
+issBlackWallpaper="black-wallpaper.jpg"
+liveIsDown=0
 
 # get one frame of live stream
 
@@ -15,7 +18,6 @@ ffmpeg -loglevel panic -y -i http://iphone-streaming.ustream.tv/uhls/17074538/st
 
 failed=$?
 
-# process image
 
 if [ ${failed} -eq "0" ] 
 then
@@ -27,19 +29,32 @@ then
 	fi
 
 	rmsedown=`compare -metric RMSE $issLiveIsDown $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
-	rmseblack=`compare -metric RMSE -size 1280x720 xc:#000 $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
+	rmsegray=`compare -metric RMSE $issGrayWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
+	rmseblack=`compare -metric RMSE $issBlackWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
+	# rmseblack=`compare -metric RMSE -size 1280x720 xc:#000 $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
 
 
 	if [ $(echo " $rmsedown < $threshold " | bc) -eq 1 ] 
 	then
 		echo "Live is down";
-		exit 1;
+		liveIsDown=1
 	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
 	then
 		echo "It's too dark";
+		liveIsDown=1
+	elif [ $(echo " $rmseblack < $threshold " | bc) -eq 1 ] 
+	then
+		echo "Live is down (gray)";
+		liveIsDown=1
+	fi
+
+	if [ $liveIsDown = 1 ]
+	then
+		rm $issfile
 		exit 1;
 	fi
 
+	
 	if [[ $1 = "--wallpaper" ]]
 	then
 		convert $issfile -filter spline -resize 1920x -unsharp 0x4+0.4+0 $default
@@ -63,7 +78,7 @@ then
 		access_token_fb=`cat ACCESS_TOKEN`
 	  	id_page_fb=`cat ID_PAGE`
 	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location"
-	  	rm $issfile
+	  	# rm $issfile
 	fi
 fi
 
