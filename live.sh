@@ -31,7 +31,6 @@ then
 	rmsedown=`compare -metric RMSE $issLiveIsDown $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
 	rmsegray=`compare -metric RMSE $issGrayWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
 	rmseblack=`compare -metric RMSE $issBlackWallpaper $issfile null: 2>&1 | grep -E -o '\((0|1)?(\.[0-9]*\))?' | sed 's/[()]//g'`
-	# rmseblack=`compare -metric RMSE -size 1280x720 xc:#000 $issfile null: 2>&1 | grep -E -o '\((0|1)?\.[0-9]*\)' | sed 's/[()]//g'`
 
 
 	if [[ ( -z $rmsedown ) || ( $(echo " $rmsedown < $threshold " | bc) -eq 1 ) ]]
@@ -78,7 +77,6 @@ then
 		access_token_fb=`cat ACCESS_TOKEN`
 	  	id_page_fb=`cat ID_PAGE`
 	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location"
-	  	# rm $issfile
 	fi
 fi
 
