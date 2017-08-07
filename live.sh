@@ -70,13 +70,19 @@ then
 
 		DISPLAY=:0.0 feh --bg-center $default
 
-	elif [[ $1 = "--post-fb" ]]
+	elif [[ $1 = "--post-socials" ]]
 	then
 
 		location=`./location.sh`
 		access_token_fb=`cat ACCESS_TOKEN`
 	  	id_page_fb=`cat ID_PAGE`
+	  	conf_file='./conf.yaml'
+
+	  	# fb
 	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location"
+
+	  	# twitter
+	  	python ./post_twitter.py $conf_file $issfile "$location"
 	fi
 fi
 
