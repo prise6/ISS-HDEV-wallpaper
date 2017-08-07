@@ -4,3 +4,5 @@ USERNAME
 ACCESS_TOKEN
 ID_PAGE
 test_post_fb.sh
+conf.yaml
+_*.py
