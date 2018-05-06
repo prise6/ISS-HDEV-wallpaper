@@ -74,12 +74,10 @@ then
 	then
 
 		location=`./location.sh`
-		access_token_fb=`cat ACCESS_TOKEN`
-	  	id_page_fb=`cat ID_PAGE`
 	  	conf_file='./conf.yaml'
 
-	  	# fb
-	  	python ./post_fb.py $access_token_fb $id_page_fb $issfile "$location"
+	  	# instgram
+		python ./post_instagram.py $conf_file $issfile "$location"	  	
 
 	  	# twitter
 	  	python ./post_twitter.py $conf_file $issfile "$location"

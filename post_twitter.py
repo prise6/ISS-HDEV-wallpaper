@@ -29,6 +29,6 @@ if __name__ == '__main__':
 
 	# post tweet + media
 	api.PostMedia(
-		status = "#ISS is above #{0}".format(location.replace(" ", "_")),
+		status = "#ISS is above #{0}".format(location.replace(" ", "")),
 		media  = photo
 	)
