@@ -20,6 +20,14 @@ So why not create dynamic wallpaper where photos come from the [ISS HDEV experim
 
 :camera: :dizzy_face:
 
+```
+~$ ./live.sh --post-socials
+```
+
+[Twitter](https://twitter.com/EarthAndISS)
+[Instagram](https://www.instagram.com/earthfromiss/)
+
+
 ## Config:
 
 * OS : debian 
