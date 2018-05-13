@@ -6,3 +6,5 @@ ID_PAGE
 test_post_fb.sh
 conf.yaml
 _*.py
+history.txt
+*.sublime-workspace

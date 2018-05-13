@@ -13,6 +13,7 @@
 # variables
 username=`cat USERNAME`
 position=""
+historyFile='history.txt'
 
 # find iss location
 issinfos=$(curl -s https://api.wheretheiss.at/v1/satellites/25544)
@@ -32,6 +33,8 @@ then
 	# echo $country
 	position=$(echo $country | grep -Po '(?<=countryName":").*?(?=")')
 fi
+
+echo "$latitude;$longitude;$1;$position" >> $historyFile
 
 echo $position
 

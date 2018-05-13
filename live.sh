@@ -73,7 +73,7 @@ then
 	elif [[ $1 = "--post-socials" ]]
 	then
 
-		location=`./location.sh`
+		location=`./location.sh $currentdate`
 	  	conf_file='./conf.yaml'
 
 	  	# instgram
